@@ -206,7 +206,7 @@ The identity comparison operator (`===`) behaves more like the `==` operator you
 1 == true       // true
 1 === true      // false
 "" == false     // true
-"" === false    // true
+"" === false    // false
 ```
 
 #### Comparison with NaN
