@@ -519,6 +519,16 @@ All arrays have a `length` property that stores the number of items in the array
 [1, 2, 3, 4, 5].length;  // Yields the value 5
 ```
 
+### Arrays are mutable
+```js
+let a = [1, 2, 3];
+
+a[0] = 4;
+a[1] = 5;
+a[2] = 6;
+// Now a is [4, 5, 6]
+```
+
 ### Array Operations
 
 ```js
@@ -531,7 +541,7 @@ a.length            // Yields: 5
 a.includes(3)       // Yields: true
 a.indexOf(3)        // Yields: 2
 a.join("-")         // Yields: "1-2-3-4-5"
-a.concat([6. 7, 8]) // Yields: [1, 2, 3, 4, 5, 6, 7, 8]
+a.concat([6, 7, 8]) // Yields: [1, 2, 3, 4, 5, 6, 7, 8]
 a.sort()            // Sorts elements of a in-place
 
 // Delete element with index 2
