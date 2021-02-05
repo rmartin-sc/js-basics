@@ -346,6 +346,9 @@ let n = Number("1000")
 let n = Number("NaN")       // This works too
 let n = Number("1.23e-6")   // And this
 
+let n = parseInt("123.456") // If you specifically want an int
+let n = parseFloat("123")   // If you specifically want a float
+
 // Number to string
 let s = "" + 1000           // Type coersion FTW!
 ```
