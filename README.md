@@ -1089,6 +1089,30 @@ For object destructuring, order is not important **BUT** you *must* use exact pr
 ```js
 const {birthday, firstName} = obj;
 ```
+### Object short-hand
+
+Suppose you want to build an object with properties that have the same name as some variables:
+
+```js
+const fname = "Ali";
+const lname = "Array";
+const birthday = new Date(1970, 0, 1);
+```
+
+The following shorthand...
+
+```js
+const obj = { fname, lname, birthday };
+```
+
+...is equivalent to this standard form:
+```js
+const obj = {
+    fname: fname,
+    lname: lname,
+    birthday: birthday
+}
+```
 
 ### User-defined object methods
 
