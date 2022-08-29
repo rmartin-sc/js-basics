@@ -1,81 +1,92 @@
-# JavaScript Basics
+# JavaScript Basics <!-- omit in toc -->
 
 This document introduces the basics of JavaScript syntax, highlighting some ways in which JavaScript differs from other languages like Python, Java, or C#.
 
 **Table of Contents**
 
-<!-- TOC depthFrom:2 -->
-
+- [What is JavaScript?](#what-is-javascript)
 - [Running JavaScript programs](#running-javascript-programs)
-    - [Browser (client-side JavaScript)](#browser-client-side-javascript)
-    - [Node.js (server-side JavaScript)](#nodejs-server-side-javascript)
+  - [Browser (client-side JavaScript)](#browser-client-side-javascript)
+  - [Node.js (server-side JavaScript)](#nodejs-server-side-javascript)
 - [JavaScript Syntax Basics](#javascript-syntax-basics)
-    - [Indentation](#indentation)
-    - [Naming Conventions](#naming-conventions)
+  - [Indentation](#indentation)
+  - [Naming Conventions](#naming-conventions)
 - [Comments](#comments)
 - [Types and Values](#types-and-values)
-    - [Numbers](#numbers)
-        - [Arithmetic operators](#arithmetic-operators)
-        - [Rounding numbers](#rounding-numbers)
-    - [Strings](#strings)
-        - [String Operations](#string-operations)
-        - [Escape sequences](#escape-sequences)
-        - [Immutability of Strings](#immutability-of-strings)
-    - [Booleans](#booleans)
-        - [Comparison operators](#comparison-operators)
-        - [Comparison and Type Coersion](#comparison-and-type-coersion)
-        - [Comparison with NaN](#comparison-with-nan)
-        - [Logical operators](#logical-operators)
-    - [Converting (Casting) Between Types](#converting-casting-between-types)
-    - [Null and Undefined](#null-and-undefined)
-    - [Printing Values](#printing-values)
-    - [Obtaining User Input](#obtaining-user-input)
+  - [Numbers](#numbers)
+    - [Arithmetic operators](#arithmetic-operators)
+    - [Rounding numbers](#rounding-numbers)
+  - [Strings](#strings)
+    - [String Operations](#string-operations)
+    - [Escape sequences](#escape-sequences)
+    - [Immutability of Strings](#immutability-of-strings)
+  - [Booleans](#booleans)
+    - [Comparison operators](#comparison-operators)
+    - [Comparison and Type Coersion](#comparison-and-type-coersion)
+    - [Comparison with NaN](#comparison-with-nan)
+    - [Logical operators](#logical-operators)
+  - [Converting (Casting) Between Types](#converting-casting-between-types)
+  - [Null and Undefined](#null-and-undefined)
+  - [Printing Values](#printing-values)
+  - [Obtaining User Input](#obtaining-user-input)
 - [Bindings (Variables)](#bindings-variables)
-    - [Binding Names](#binding-names)
-    - [Built-in Bindings](#built-in-bindings)
+  - [Binding Names](#binding-names)
 - [Conditionals](#conditionals)
-    - [Switch Statements](#switch-statements)
+  - [Switch Statements](#switch-statements)
 - [Loops](#loops)
-    - [While Loops](#while-loops)
-    - [For loops](#for-loops)
-    - [For..of / For..in Loops](#forof--forin-loops)
-    - [Exiting Loops](#exiting-loops)
+  - [While Loops](#while-loops)
+  - [For loops](#for-loops)
+  - [For..of / For..in Loops](#forof--forin-loops)
+  - [Exiting Loops](#exiting-loops)
 - [Lists (arrays)](#lists-arrays)
-    - [Array Operations](#array-operations)
-    - [Comparing Arrays](#comparing-arrays)
-    - [Traversing Arrays](#traversing-arrays)
-    - [Emulating Python's `range`](#emulating-pythons-range)
-    - [Array destructuring](#array-destructuring)
+  - [Arrays are mutable](#arrays-are-mutable)
+  - [Array Operations](#array-operations)
+  - [Comparing Arrays](#comparing-arrays)
+  - [Traversing Arrays](#traversing-arrays)
+  - [Emulating Python's `range`](#emulating-pythons-range)
+  - [Array destructuring](#array-destructuring)
 - [Functions](#functions)
-    - [Arrow Functions](#arrow-functions)
-    - [Higher-order functions](#higher-order-functions)
-        - [Filter / Map / Reduce](#filter--map--reduce)
-    - [Functions and Scope](#functions-and-scope)
-    - [Closure](#closure)
-    - [Function Documentation](#function-documentation)
-    - [Gather and Spread Operators](#gather-and-spread-operators)
+  - [Arrow Functions](#arrow-functions)
+  - [Higher-order functions](#higher-order-functions)
+    - [Filter / Map / Reduce](#filter--map--reduce)
+  - [Functions and Scope](#functions-and-scope)
+  - [Closure](#closure)
+  - [Function Documentation](#function-documentation)
+  - [Gather and Spread Operators](#gather-and-spread-operators)
 - [Built-in Objects](#built-in-objects)
-    - [The Math object](#the-math-object)
-    - [Dates](#dates)
-    - [Maps (dictionaries)](#maps-dictionaries)
-        - [Traversing Maps](#traversing-maps)
+  - [The Math object](#the-math-object)
+  - [Dates](#dates)
+  - [Maps (dictionaries)](#maps-dictionaries)
+    - [Traversing Maps](#traversing-maps)
 - [Object literals](#object-literals)
-    - [Accessing object properties](#accessing-object-properties)
-    - [The in operator](#the-in-operator)
-    - [Object destructuring](#object-destructuring)
-    - [User-defined object methods](#user-defined-object-methods)
-    - [JS objects vs Maps (dictionaries)](#js-objects-vs-maps-dictionaries)
-    - [JavaScript Object Notation (JSON)](#javascript-object-notation-json)
+  - [Accessing object properties](#accessing-object-properties)
+  - [The in operator](#the-in-operator)
+  - [Object destructuring](#object-destructuring)
+  - [Object short-hand](#object-short-hand)
+  - [User-defined object methods](#user-defined-object-methods)
+  - [JS objects vs Maps (dictionaries)](#js-objects-vs-maps-dictionaries)
+  - [JavaScript Object Notation (JSON)](#javascript-object-notation-json)
 - [Objects and References](#objects-and-references)
-    - [Objects and equality](#objects-and-equality)
+  - [Objects and equality](#objects-and-equality)
+- [Custom Objects (Classes)](#custom-objects-classes)
+  - [Inheritance](#inheritance)
+  - [Duck Typing](#duck-typing)
+  - [The `this` Keyword in JavaScript](#the-this-keyword-in-javascript)
+    - [`this` and Arrow Functions](#this-and-arrow-functions)
 - [Errors and Error Handling](#errors-and-error-handling)
 - [Modules](#modules)
-    - [Importing module bindings](#importing-module-bindings)
-    - [CommonJS](#commonjs)
-    - [Immediately Invoked Function Expressions (IIFEs)](#immediately-invoked-function-expressions-iifes)
+  - [Importing module bindings](#importing-module-bindings)
+  - [CommonJS](#commonjs)
+  - [Immediately Invoked Function Expressions (IIFEs)](#immediately-invoked-function-expressions-iifes)
 - [Reading and writing files](#reading-and-writing-files)
 
-<!-- /TOC -->
+## What is JavaScript?
+
+- It is *NOT* related to Java aside from its name and some syntactical similarities (C-style syntax)
+- Originally implemented as a way to add interactivity to web sites but has grown into the primary language of the web 
+- It is an implementation of the ECMAScript (ES) standard
+  - Language standard receives regular updates
+  - Browsers must implement the standard to include new features
 
 ## Running JavaScript programs
 
@@ -84,7 +95,6 @@ Two main environments
 ### Browser (client-side JavaScript)
 - All browsers have a built-in JavaScript interpreter
 - Programs run in a 'sandox' (certain operations are not allowed or require explicit permission, e.g. access to file system)
-- 
 
 Client-side JS usually runs in the context of a web page...
 ```html
@@ -172,7 +182,9 @@ typeof console.log  // 'function'
 typeof []           // 'object'
 ```
 
-There are only a few more built-in types than the ones shown above.  But there are many built-in objects, and the `instanceof` operator can be used to determine the precise kind of object a value is:
+There are only a few more built-in 'primitive' types than the ones shown above.  But there are many other built-in classes (and programmers may create their own classes).  
+
+The `instanceof` operator can be used to determine if a value is an instance of a certain class:
 
 ```js
 [] instanceof Array  // Yields: true
@@ -194,7 +206,7 @@ NaN         // 'not a number', for example 0/0 == NaN
 1 - 2       // Subtraction
 1 * 2       // Multiplication
 1 / 2       // Division
-2 ** 3      // Exponentiation (new in ES7)
+2 ** 3      // Exponentiation (new in ES2016)
 9 % 7       // Modulus (the remainder when 9 is divided by 7)
 ```
 
@@ -370,7 +382,7 @@ console.log("Any expression will do " + 1 + 2 * 3 / 4);
 
 ### Obtaining User Input
 
-There are several ways to obtain user input that will be discussed in this course.  Here, we present the simplest way.  (But this way is not often used in real programs.)
+There are several ways to obtain user input.  Here, we present the simplest way.  (But this way is not often used in real programs.)
 
 Only in browsers, the `prompt` function may be used to prompt the user for a value.  The user's input is returned from the function as a string.
 
@@ -407,10 +419,6 @@ Binding names may include alphabetical symbols, numerical symbols, `$` and/or `_
 
 Binding names may not be a JS keyword.
 
-### Built-in Bindings
-
-There are many bindings built-in to both browsers and Node.js.  We will learn more about these throughout the term.
-
 ## Conditionals
 
 ```js
@@ -425,7 +433,7 @@ if ( conditionExpression ) {
 
 ### Switch Statements
 
-If all the condition expressions in a conditional statement are discrete **equality** checks, a switch statement can be more readable and more computationally efficient.
+If all the condition expressions in a conditional statement are simple **equality** checks, a switch statement can be more readable and more computationally efficient.
 
 The following two code blocks are equivalent:
 ```js
@@ -537,10 +545,14 @@ a[2] = 6;
 ```js
 let a = [1, 2, 3, 4, 5];
 
+a.length            // Yields: 5
+
+a.push(42)          // Add a value to end of array
+a[a.length-1] = 42  // Same as above
+
 typeof a            // Yields 'object'
 a instanceof Array  // Yields: true
 
-a.length            // Yields: 5
 a.includes(3)       // Yields: true
 a.indexOf(3)        // Yields: 2
 a.join("-")         // Yields: "1-2-3-4-5"
@@ -566,35 +578,19 @@ Array.from("abc")   // Yields ['a', 'b', 'c']
 
 ### Comparing Arrays
 
-Using `==` to compare arrays works like using `is` to compare lists in Python.
+Using `==` to compare arrays works like using `is` to compare lists in Python.  I.e. Using `==` on arrays compares their *references*.  It does NOT compare array *contents*.
 
 ```js
 let a = [1, 2, 3];
-let b = [1, 2, 3];
-let c = a;
+let b = [1, 2, 3];   // b is a reference to a separate array from a that happens to have the same contents
+let c = a;           // Aliasing assignment (c is a reference to the same array as a)
 
 a == a      // Yields: true
 a == c      // Yields: true
 a == b      // Yields: false
 ```
 
-To check if two arrays contain the same set of values you must traverse the arrays.  There are many possible approaches depending on specific needs.  Here is one example that compares two arrays using strict comparison of values (`===` as opposed to `==`).  This function would fail, though, on multi-dimensional arrays:
-
-```js
-function isEqual(arr1, arr2) {
-    if ( arr1.length != arr2.length ) {
-        return false;
-    }
-
-    for ( let i = 0; i < arr1.length; i += 1 ) {
-        if ( arr1[i] !== arr2[i] ) {
-            return false;
-        }
-    }
-    // If we haven't returned false by now, they're equal!
-    return true;
-}
-```
+To check if two arrays contain the same set of values you must traverse the arrays.  There are many possible approaches depending on specific needs.  
 
 ### Traversing Arrays
 
@@ -660,7 +656,7 @@ const [a, b, c] = myArray;
 
 ## Functions
 
-In JS, functions can be treated as values.  The syntax for creating a function and binding it to a name is as follows:
+In JS, functions are values.  The syntax for creating a function and binding it to a name is as follows:
 
 ```js
 const foo = function() {
@@ -671,9 +667,11 @@ const foo = function() {
 foo();  // Calling the above function
 ```
 
+**NOTE:** The expression to the right of the `=` above is an 'anonymous function'.  I.e. a namesless function, which we bind to a name using the variable assignment syntax.
+
 A function with parameters:
 ```js
-const bar = function(a, b) {
+const add = function(a, b) {
     return a + b;
 }
 
@@ -687,7 +685,7 @@ function foo() {
     // Instructions to execute when foo is called
 }
 
-function bar(a, b) {
+function add(a, b) {
     return a + b;
 }
 ```
@@ -703,15 +701,15 @@ const foo = () => {
     // Instructions to execute when foo is called
 }
 
-const bar = (a, b) => {
+const add = (a, b) => {
     return a + b;
 }
 ```
 
-If the body of an arrow function is a single expression, the value of that expression is returned automatically, and no curly braces are required.  The declaration of `bar` below is equivalent to all the declarations of `bar` above:
+If the body of an arrow function is a *single expression*, the value of that expression is returned automatically, and no curly braces are required.  The declaration of `bar` below is equivalent to all the declarations of `bar` above:
 
 ```js
-const bar = (a, b) => a + b;  
+const add = (a, b) => a + b;  
 ```
 
 If an arrow function requires only one parameter, the parentheses around the parameter may be omitted as well!
@@ -880,7 +878,7 @@ function repeatStr(s, n) {
 
 ### Function Documentation
 
-There is a special comment format that is used by convention to document functions (akin to Python's docstrings).  
+There is a special comment format that is used by convention to document functions (akin to JavaDoc and Python's docstrings).  
 
 Many programming tools can parse function comments formatted in this way to automatically produce documentation for a program.
 
@@ -1249,6 +1247,180 @@ let d2 = d1
 let d3 = new Date(2020, 2, 20)
 d1 == d2        // True because d2 is an alias for d1
 d1 == d3        // False (even though they have the same value) because d1 and d3 are different objects 
+```
+
+## Custom Objects (Classes)
+
+In JS, classes and inheritance hierarchies can be implemented using JavaScript's [prototype system](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain). To gain a truly deep understanding of JS it is important to understand this system. 
+
+However, as of ES2015, a more traditional syntax for implementing classes and inheritance was introduced to ease transition for programmers coming from languages such as C# and Java.
+
+Note that there is [much more](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) to the class syntax in JavaScript than what is presented here, but this will get you started.
+
+```js
+class MyClass {
+
+    myPublicField;
+    #myPrivateField;  // NOTE use of # to indicate private field
+
+    // The constructor method is always named 'constructor'
+    constructor(val1, val2) {
+        // Class fields initialized here using `this` keyword
+        this.myPublicField = val1;
+
+        // NOTE use of # to refer to private field
+        this.#myPrivateField = val2;
+    }
+
+    myPublicMethod() {
+        // NOTE use of # to call private method
+        var x = this.#myPrivateMethod();
+        console.log(x);
+    }
+
+    // NOTE use of # to indicate private method
+    #myPrivateMethod() {
+        return this.#myPrivateField * 42;
+    }
+}
+
+var obj = new MyClass(1, 2);
+obj.myPublicMethod();
+```
+
+### Inheritance
+
+Inheritance hierarchies between classes may be established using the `extends` keyword, for example:
+
+```js
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+
+    speak() {
+        console.log(`${this.name} says nothing`);
+    }
+}
+
+class Dog extends Animal {
+    speak() {
+        console.log(`${this.name} says woof!`);
+    }
+}
+
+class Cat extends Animal {
+    speak() {
+        console.log(`${this.name} says meow!`);
+    }
+}
+
+var d1 = new Dog("Spot");
+var d2 = new Dog("Bingo");
+var c = new Cat("Snowball");
+d1.speak();  // Spot says woof!
+d2.speak();  // Bingo says woof!
+c.speak();   // Snowball says meow!
+```
+
+### Duck Typing
+
+JavaScript has no formal 'interface' structure like C# or Java because it is dynamically typed.  This is sometimes called 'duck typing', as in "If it quacks like a duck it must be a duck."
+
+```js
+function (duck) {
+    // As long as duck has a method named 'quack' this will work.
+    // There is no specific type that duck must be
+    console.log(duck.quack());
+}
+```
+
+### The `this` Keyword in JavaScript
+
+In most OOP languages, `this` is used in the context of class definitions to refer to the value of the object that was created from the class.  At first glance, JavaScript works the same, but it is [rather more complicated](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this).
+
+Let's focus here on the main distinction: JavaScript's `this` usually refers to the *object on which a function was called*.  That object may not always be related to the scope in which the `this` keyword is used!
+
+Consider the following example:
+
+```js
+function printName() {
+    // This is a plain JS function outside a class.
+    // The this keyword refers to the object that calls this function
+    console.log(this.name);
+}
+
+// Here, we make two object literals and bind their sayName properties to the printName function 
+var a = { name: "A" }
+var b = { name: "B" }
+a.sayName = b.sayName = printName;
+
+// And it works!
+a.sayName();  // Prints 'A' because the calling object is a
+b.sayName();  // Prints 'B' because the calling object is b
+```
+
+In the context of a class, JS `this` usually does the right thing:
+
+```js
+class Aaa {
+    constructor(n) {
+        this.n = n;
+    }
+
+    scream() {
+        console.log("A".repeat(this.n) + "!");
+    }
+}
+var a = new Aaa(10);
+a.scream();  // AAAAAAAAAA!
+```
+
+But because JS functions are values, one must be careful when referring to object methods.  Consider the following example:
+
+```js
+var a = new Aaa(10);
+
+// Bind the object's scream method to another name
+var scream = a.scream;  
+// Call that new function...
+scream();  // ERROR!  `this` is undefined because scream was not called on an object!
+```
+
+#### `this` and Arrow Functions
+
+An exception to the above rule: in JavaScript **arrow functions**, `this` works more like it does in C#/Java/etc. in that it refers to the value of `this` in the scope of its surrounding code.  So, in the context of a class definition a `this` inside an arrow function will always refers to the **object that was created from that class** rather than whatever object finally makes the call to the function.
+
+For example:
+
+```js
+class Aaa {
+    constructor(n) {
+        this.n = n;
+    }
+
+    normalScream() {
+        // In a normal function `this` refers to whatever object this method gets called on, (which may or may not be the Aaa object created from this class!)
+        console.log("A".repeat(this.n) + "!");
+    }
+
+    arrowScream = () => {
+        // In an arrow function, `this` ALWAYS refers to the Aaa object created from this class
+        console.log("A".repeat(this.n) + "!");
+    }
+}
+var a = new Aaa(10);
+// Both of these work fine...
+a.normalScream();  // AAAAAAAAAA!
+a.arrowScream();   // AAAAAAAAAA!
+
+// But if we rebind the methods to new names...
+var s1 = a.normalScream;  
+var s2 = a.arrowScream;
+
+// Only the arrow function works because `this` still refers to the a object even after rebinding
+s1();  // ERROR! (see previous section)
+s2();  // AAAAAAAAAA!
 ```
 
 ## Errors and Error Handling
