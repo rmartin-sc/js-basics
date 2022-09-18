@@ -101,9 +101,13 @@ Client-side JS usually runs in the context of a web page...
 <html>
 <head>
     ...
+    <!-- Place JS directly into HTML -->
     <script>
         console.log("Hello, world!");
     </script>
+
+    <!-- OR put JavaScript in a separate file -->
+    <script src="my.js"></script>
     ...
 </head>
 <body>
