@@ -1024,7 +1024,7 @@ const o = {               // Object with some properties
     'lname': 'Array'
 };
 const o = {               // This syntax works too!
-    fname: 'Ali',       // (property names can be used directly)
+    fname: 'Ali',       // (property names do not need to be quoted)
     lname: 'Array'
 };
 ```
@@ -1118,7 +1118,7 @@ const obj = {
 
 ### User-defined object methods
 
-The properties of an object may have functions as values
+Since JS functions are values, object properties may be functions. In this way, you can add methods to objects.
 
 ```js
 let o = {
@@ -1257,7 +1257,7 @@ d1 == d3        // False (even though they have the same value) because d1 and d
 
 In JS, classes and inheritance hierarchies can be implemented using JavaScript's [prototype system](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain). To gain a truly deep understanding of JS it is important to understand this system. 
 
-However, as of ES2015, a more traditional syntax for implementing classes and inheritance was introduced to ease transition for programmers coming from languages such as C# and Java.
+However, as of ES2015, a more conventional syntax for implementing classes and inheritance was introduced to ease transition for programmers coming from languages such as C# and Java.
 
 Note that there is [much more](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) to the class syntax in JavaScript than what is presented here, but this will get you started.
 
