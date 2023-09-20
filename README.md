@@ -75,6 +75,7 @@ This document introduces the basics of JavaScript syntax, highlighting some ways
     - [`this` and Arrow Functions](#this-and-arrow-functions)
 - [Errors and Error Handling](#errors-and-error-handling)
 - [Modules](#modules)
+  - [Export bindings from a module](#export-bindings-from-a-module)
   - [Importing module bindings](#importing-module-bindings)
   - [CommonJS](#commonjs)
   - [Immediately Invoked Function Expressions (IIFEs)](#immediately-invoked-function-expressions-iifes)
@@ -1467,23 +1468,36 @@ try {
 
 ## Modules
 
-Until recent versions of JS, there was no standardized way to separate code into modules.
+Until recent versions of JS, there was no standardized way to combine related code into modules.
 
 In client-side code, all code included using `<script>` elements is executed in the *same scope*.  Thus, declaring and assigning values to bindings in the global scope can overwrite bindings from other scripts!
 
-In modern JS, ECMAScript Modules (ESModules or ESM) can be used to avoid this problem.  The scope of bindings in a module is limited to the module unless the bindings are explicitly imported.
+In modern JS, ECMAScript Modules (ESModules or ESM) can be used to avoid this problem.  The scope of bindings in a module is limited to the module unless the bindings are explicitly exported and imported.
+
+### Export bindings from a module
+
+```js
+// Inside a JS file named 'math.js'
+
+export const pi = 3.1415926; // This can be imported into another code file
+export function square(n) { return n*n; } // As can this
+const zero = 0; // Not exported, so not accessible outside the module file
+```
 
 ### Importing module bindings
 
-Import everthing (`*`) from the `os` module and refer to it in code as `os`:
+Import everthing (`*`) from the `math.js` module and refer to it in code as `math`:
 ```js
-import * as os from 'os';
+import * as math from './math.js'; // Using a relative path
 ```
 
-Import just the `EOL` and `homedir` bindings from the `os` module
+Import just the `pi` and `square` bindings from the `math.js` module
 
 ```js
-import {EOL, homedir} from 'os';
+import {pi, square} from './math.js';
+
+// Imports can be aliased
+import { square as sq } from './math.js';
 ```
 
 ### CommonJS
