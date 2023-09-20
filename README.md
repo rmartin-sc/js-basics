@@ -1495,8 +1495,11 @@ Import just the `pi` and `square` bindings from the `math.js` module
 
 ```js
 import {pi, square} from './math.js';
+```
 
-// Imports can be aliased
+Imports can be aliased
+
+```js
 import { square as sq } from './math.js';
 ```
 
